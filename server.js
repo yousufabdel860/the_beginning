@@ -15,6 +15,9 @@ app.get('/api/quotes/random', (req, res) => {
   });
 });
 
+app.use(express.json())
+app.use(morgan('tiny'))
+
 app.get('/api/quotes', (req, res) => {
   if (req.query.person !== undefined) {
     const quotesByPerson = quotes.filter(quote => quote.person === req.query.person);
@@ -23,6 +26,7 @@ app.get('/api/quotes', (req, res) => {
     });
   } else {
     res.send({
+    
       quotes: quotes
     });
   }
